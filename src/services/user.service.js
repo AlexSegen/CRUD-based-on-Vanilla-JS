@@ -5,10 +5,16 @@ const RESOURCE_NAME = '/users';
 
 const get = async () => {
   try {
+    
     const response = await fetch(config.server.api + RESOURCE_NAME);
 
-    const data = await response.json();
-    return data
+    if (response.ok) {
+      const data = await response.json();
+      return data
+    }
+    // Raise an exception to reject the promise and trigger the outer .catch() handler.
+    // By default, an error response status (4xx, 5xx) does NOT cause the promise to reject!
+    throw Error(response.statusText);
 
   } catch (e) {
     UIkit.notification(`Error: ${e.message}`);
@@ -27,9 +33,13 @@ const post = async (payload) => {
       }
     });
 
-    const data = await response.json();
+    if (response.ok) {
+      const data = await response.json();
+      return data
+    }
 
-    return data
+    throw Error(response.statusText);
+
   } catch (e) {
     UIkit.notification(`Error: ${e.message}`);
     console.log(e.message);
@@ -46,9 +56,12 @@ const put = async (payload) => {
       }
     });
 
-    const data = await response.json();
+    if (response.ok) {
+      const data = await response.json();
+      return data
+    }
 
-    return data
+    throw Error(response.statusText);
 
   } catch (e) {
     UIkit.notification(`Error: ${e.message}`);
@@ -62,7 +75,12 @@ const remove = async (identifier) => {
       method: 'DELETE'
     });
 
-    return response.ok
+    if (response.ok) {
+      const data = await response.json();
+      return data
+    }
+
+    throw Error(response.statusText);
   } catch (e) {
     UIkit.notification(`Error: ${e.message}`);
     console.log(e.message);
