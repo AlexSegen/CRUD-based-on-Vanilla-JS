@@ -1,10 +1,10 @@
 // Add your scripts here
 import UIkit from 'uikit';
 import Icons from 'uikit/dist/js/uikit-icons'
+import userService from '../services/user.service';
 
 UIkit.use(Icons);
 
-import userService from '../services/user.service';
 let users = [];
 let table = document.getElementById('table');
 var myForm = document.getElementById('myForm');
@@ -28,8 +28,6 @@ const listUsers = data => {
         </tr>`;
     }
 };
-
-
 
 const getUsers = () => {
     userService.get().then(data => {
@@ -78,7 +76,6 @@ const updateUser = payload => {
     });
 }
 
-
 myForm.addEventListener('submit', e => {
     e.preventDefault();
     addUser();
@@ -99,7 +96,6 @@ document.addEventListener('click', function(e){
     }
 
     if(e.target.classList.contains('--edit')) {
-        //console.log(e.target.parentElement.parentElement.children);
         e.target.parentElement.parentElement.querySelector('.--save').style.display = "inline-flex";
         e.target.parentElement.parentElement.querySelector('.--edit').style.display = "none";
         
