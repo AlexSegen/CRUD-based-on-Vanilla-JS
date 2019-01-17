@@ -24,10 +24,28 @@ const post = async (payload) => {
     
     return data
 }
+
+const put = async (payload) => {
+    const response = await fetch(`${config.server.api}${ RESOURCE_NAME}/${payload.id}`, 
+        {
+            method: 'PUT',
+            body: JSON.stringify(payload),
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const data = await response.json();
+    
+        return data
+}
+
 const remove = async (identifier) => {
     const response = await fetch(`${config.server.api}${ RESOURCE_NAME}/${identifier}`, 
         {
             method: 'DELETE'
         });
+   
+        return response
 }
-export default { get, post, remove };
+export default { get, post, remove, put };

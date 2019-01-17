@@ -1,15 +1,17 @@
 {
   "users": [
     {
-      "first_name": "Alejandro",
-      "last_name": "Vivas",
-      "email": "ajvivas17@gmail.com",
-      "id": 1
+      "first_name": "Roberto",
+      "last_name": "Rodriguez",
+      "email": "robert@mail.com",
+      "id": 2,
+      "active": true
     },
     {
-      "first_name": "Alejandro",
-      "last_name": "Vivas",
-      "email": "ajvivas17@gmail.com",
+      "first_name": "Nataly",
+      "last_name": "Uscher",
+      "email": "nata@mail.com",
+      "active": true,
       "id": 3
     }
   ]
