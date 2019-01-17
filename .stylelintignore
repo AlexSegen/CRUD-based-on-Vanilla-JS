@@ -1,0 +1,6 @@
+## Project
+dist/*
+## Sass
+.sass-cache
+
+node_modules

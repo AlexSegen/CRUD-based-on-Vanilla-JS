@@ -1,1 +1,7 @@
 // Add your styles here
+@import "uikit/src/scss/variables.scss";
+@import "uikit/src/scss/uikit.scss";
+
+body {
+  color: #333;
+}
