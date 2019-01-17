@@ -64,11 +64,14 @@ const deleteUser = identifier => {
 }
 
 const updateUser = payload => {
-    return userService.put(payload).then(data => {
-        
-        let index = users.findIndex(i => i.id == payload.id);
 
-        users[index] = data;
+    let user = users.find(i => i.id == payload.id);
+
+    payload.active = user.active;
+
+    return userService.put(payload).then(data => {
+         
+        users[users.findIndex(i => i.id == payload.id)] = data;
 
         listUsers(users);
 
