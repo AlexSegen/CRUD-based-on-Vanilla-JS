@@ -15,7 +15,6 @@ const listUsers = data => {
   for (const i of data) {
     table.innerHTML += `
         <tr ref="${i.id}">
-            <td>${i.id}</td>
             <td ref="field" data-field="first_name">${i.first_name}</td>
             <td ref="field" data-field="last_name">${i.last_name}</td>
             <td ref="field" data-field="email">${i.email}</td>
