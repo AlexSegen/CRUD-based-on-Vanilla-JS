@@ -1,6 +1,8 @@
-const server ={
-    api: 'http://localhost:5000',
-    secret: ''
+const server = {
+  api: 'http://localhost:5000',
+  secret: ''
 }
 
-export default { server }
+export default {
+  server
+}
