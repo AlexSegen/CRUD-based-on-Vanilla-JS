@@ -72,8 +72,9 @@ const addUser = () => {
     userService.post(obj).then(data => {
       users.push(data);
       listUsers(users);
-      loading.classList.add('done');
       UIkit.notification(`Usuario ${data.first_name} agregado.`);
+    }).finally(() => {
+      loading.classList.add('done');
     });
 
   } else {
