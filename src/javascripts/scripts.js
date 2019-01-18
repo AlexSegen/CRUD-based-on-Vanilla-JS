@@ -29,11 +29,6 @@ const listUsers = data => {
   }
 };
 
-const loadStatus = () => {
-
-  loading.classList.remove('done');
-}
-
 const getUsers = () => {
   loading.classList.remove('done');
   userService.get().then(data => {
