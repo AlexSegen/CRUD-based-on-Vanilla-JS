@@ -6,6 +6,7 @@ import userService from '../services/user.service';
 UIkit.use(Icons);
 
 let users = [];
+let loading = document.getElementById('loader');
 let table = document.getElementById('table');
 var myForm = document.getElementById('myForm');
 let formData = new FormData();
@@ -28,15 +29,22 @@ const listUsers = data => {
   }
 };
 
+const loadStatus = () => {
+
+  loading.classList.remove('done');
+}
+
 const getUsers = () => {
+  loading.classList.remove('done');
   userService.get().then(data => {
     users = data;
+    loading.classList.add('done');
     listUsers(users);
   });
 }
 
 const addUser = () => {
-
+  loading.classList.remove('done');
   let obj = {};
 
   formData = new FormData(myForm);
@@ -50,25 +58,30 @@ const addUser = () => {
   userService.post(obj).then(data => {
     users.push(data);
     listUsers(users);
+    loading.classList.add('done');
     UIkit.notification(`Usuario ${data.first_name} agregado.`);
   });
 }
 
 const deleteUser = identifier => {
+  loading.classList.remove('done');
   userService.remove(identifier).then(() => {
     users.splice(users.findIndex(i => i.id == identifier), 1);
     listUsers(users);
+    loading.classList.add('done');
     UIkit.notification(`Usuario eliminado.`);
   });
 }
 
 const updateUser = payload => {
-
+  loading.classList.remove('done');
   let user = users.find(i => i.id == payload.id);
 
   payload.active = user.active;
 
   return userService.put(payload).then(data => {
+
+    loading.classList.add('done');
 
     users[users.findIndex(i => i.id == payload.id)] = data;
 
