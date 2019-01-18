@@ -11,6 +11,19 @@ let table = document.getElementById('table');
 var myForm = document.getElementById('myForm');
 let formData = new FormData();
 
+
+const errorHandler = () => {
+  table.innerHTML = `
+  <tr >
+    <td colspan="5">
+      <div class="uk-alert-danger" uk-alert>
+        <a class="uk-alert-close" uk-close></a>
+        <p>Error trying to connect. Please, refresh and try again.</p>
+      </div>
+    </td>
+  </tr>`;
+}
+
 const listUsers = data => {
   table.innerHTML = '';
   for (const i of data) {
@@ -35,6 +48,10 @@ const getUsers = () => {
     users = data;
     loading.classList.add('done');
     listUsers(users);
+  }).finally(() => {
+    loading.classList.add('done');
+  }).catch(() => {
+    errorHandler();
   });
 }
 
