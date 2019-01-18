@@ -53,14 +53,21 @@ const addUser = () => {
     obj[pair[0]] = pair[1]
   }
 
-  obj.active = true;
+  if (obj.first_name.length > 0 && obj.last_name.length > 0 && obj.email.length > 0) {
 
-  userService.post(obj).then(data => {
-    users.push(data);
-    listUsers(users);
+    obj.active = true;
+
+    userService.post(obj).then(data => {
+      users.push(data);
+      listUsers(users);
+      loading.classList.add('done');
+      UIkit.notification(`Usuario ${data.first_name} agregado.`);
+    });
+
+  } else {
     loading.classList.add('done');
-    UIkit.notification(`Usuario ${data.first_name} agregado.`);
-  });
+    UIkit.notification(`Rellene todos los campos`);
+  }
 }
 
 const deleteUser = identifier => {
